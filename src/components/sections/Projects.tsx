@@ -170,16 +170,27 @@ function ProjectCard({
             </div>
           </div>
  
-          {/* Action Link button */}
-          <div className="flex items-center">
+          {/* Action Link buttons */}
+          <div className="flex flex-col items-end gap-1.5 shrink-0">
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`px-6 py-2.5 rounded-full border border-white/20 text-[10px] font-mono font-bold uppercase tracking-wider text-white bg-white/5 transition-all duration-300 flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.02)] ${cardStyle.btnGlow}`}
+                className={`px-4 py-1.5 rounded-full border border-white/20 text-[10px] font-mono font-bold uppercase tracking-wider text-white bg-white/5 transition-all duration-300 flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.02)] whitespace-nowrap ${cardStyle.btnGlow}`}
               >
                 <span>GitHub</span>
+                <ExternalLink className={`w-3.5 h-3.5 transition-colors duration-300 ${cardStyle.iconText}`} />
+              </a>
+            )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`px-4 py-1.5 rounded-full border border-white/20 text-[10px] font-mono font-bold uppercase tracking-wider text-white bg-white/5 transition-all duration-300 flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.02)] whitespace-nowrap ${cardStyle.btnGlow}`}
+              >
+                <span>Live Demo</span>
                 <ExternalLink className={`w-3.5 h-3.5 transition-colors duration-300 ${cardStyle.iconText}`} />
               </a>
             )}
@@ -247,14 +258,6 @@ function ProjectCard({
               ))}
             </div>
           )}
-          
-          {/* Neon Overlay Grids */}
-          <div 
-            className="absolute inset-0 bg-[linear-gradient(rgba(255,215,0,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,215,0,0.01)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
-            style={{
-              backgroundImage: `linear-gradient(${cardStyle.gridOverlay} 1px, transparent 1px), linear-gradient(90deg, ${cardStyle.gridOverlay} 1px, transparent 1px)`
-            }}
-          />
         </div>
 
         {/* Description & Tags */}

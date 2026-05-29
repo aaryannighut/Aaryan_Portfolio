@@ -55,7 +55,7 @@ export const projectsData: Project[] = [
   },
   {
     id: "alertexa",
-    title: "AlertExa - AI Proctoring System",
+    title: "AlertExa - Online Examination System",
     description: "An AI-powered proctoring and quiz system combining camera face-api.js monitoring, noise detection, and secure tab-switch exam validation.",
     longDescription: "Developed as a Semester 5 mini-project focused on maintaining online exam integrity. Features automated proctoring alerts for tab switching, screen exit, or voice/noise triggers, alongside complete course/student dashboards.",
     image: "/projects/alertexa/01_Alertexa.png",
@@ -81,13 +81,17 @@ export const projectsData: Project[] = [
     title: "Wanderlust - Airbnb Clone",
     description: "A full-stack Airbnb clone featuring CRUD listings, Passport.js authentication, Cloudinary uploads, and Mapbox map integrations. Guided by Shradha Khapra.",
     longDescription: "Developed as a full-stack learning project to apply MVC design patterns and RESTful API structures under the guidance of Shradha Khapra from Apna College. Features secure JWT/Passport session handlers, interactive review/rating widgets, Mapbox SDK location search pinouts, and custom category-based UI filters.",
-    image: "/projects/wanderlust/01_WL.png",
+    image: "/projects/wanderlust/01.png",
     screenshots: [
-      "/projects/wanderlust/01_WL.png"
+      "/projects/wanderlust/01.png",
+      "/projects/wanderlust/02.png",
+      "/projects/wanderlust/03.png",
+      "/projects/wanderlust/04.png",
+      "/projects/wanderlust/05.png"
     ],
     tech: ["Bootstrap", "EJS", "Mapbox", "Cloudinary", "Node.js", "Express.js", "MongoDB"],
     githubUrl: "https://github.com/aaryannighut/Wanderlust",
-    liveUrl: "",
+    liveUrl: "https://wanderlustdevelopedbyaaryan.onrender.com",
     featured: true,
     category: "PERSONAL • FULL STACK"
   },

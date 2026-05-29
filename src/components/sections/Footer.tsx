@@ -72,127 +72,196 @@ export default function Footer() {
     <footer className="w-full bg-[#0A0A0A] pt-6 pb-12 border-t border-white/5 z-10 relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         
-        {/* Top Grid Area */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 items-start">
-          
-          {/* Brand/Identity Block */}
-          <div className="col-span-1 md:col-span-6 space-y-4 text-left">
+        {/* Desktop Footer (hidden on mobile, visible on md+) */}
+        <div className="hidden md:block">
+          {/* Top Grid Area */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 items-start">
+            
+            {/* Brand/Identity Block */}
+            <div className="col-span-1 md:col-span-6 space-y-4 text-left">
+              <button
+                onClick={() => scrollToSection("hero")}
+                className="text-lg sm:text-xl font-black italic tracking-wider text-white uppercase hover:text-[#FFD700] hover:scale-102 transition-all duration-300 cursor-pointer select-none"
+              >
+                Aaryan Nighut
+              </button>
+              <p className="text-gray-400 text-xs font-light max-w-sm leading-relaxed">
+                AI & Full-Stack Developer driven by innovation and excellence. Transforming complex ideas into intelligent and cinematic digital experiences.
+              </p>
+            </div>
+
+            {/* Navigation Links Column */}
+            <div className="col-span-1 md:col-span-3 text-left space-y-4">
+              <h4 className="font-mono text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                Navigation
+              </h4>
+              <ul className="space-y-2.5 font-sans text-xs text-gray-400">
+                {[
+                  { id: "hero", label: "Home", icon: Home },
+                  { id: "about", label: "About Me", icon: User },
+                  { id: "services", label: "Services", icon: Briefcase },
+                  { id: "projects", label: "Projects", icon: FolderCode },
+                  { id: "achievements", label: "Achievements", icon: Trophy },
+                  { id: "contact", label: "Contact", icon: LucideMail }
+                ].map((item) => (
+                  <li key={item.id}>
+                    <button
+                      onClick={() => scrollToSection(item.id)}
+                      className="flex items-center gap-2 hover:text-[#FFD700] hover:translate-x-1.5 transition-all duration-300 cursor-pointer text-left group"
+                    >
+                      <item.icon className="w-3.5 h-3.5 text-gray-500 group-hover:text-[#FFD700] transition-colors duration-300" />
+                      <span>{item.label}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Socials Connection Column */}
+            <div className="col-span-1 md:col-span-3 text-left space-y-4">
+              <h4 className="font-mono text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                Social Nodes
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {socialsData.map((social) => {
+                  const IconComponent = getSocialIcon(social.iconName);
+                  const isInstagram = social.name === "Instagram";
+                  return (
+                    <a
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-lg border border-white/5 bg-white/[0.02] flex items-center justify-center text-gray-400 transition-all duration-300 hover:-translate-y-1 group"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = isInstagram ? "#DD2A7B" : social.color;
+                        e.currentTarget.style.borderColor = isInstagram ? "rgba(221, 42, 123, 0.4)" : `${social.color}40`;
+                        e.currentTarget.style.boxShadow = isInstagram 
+                          ? "0 4px 12px rgba(221, 42, 123, 0.35)" 
+                          : `0 4px 12px ${social.color}40`;
+                        if (isInstagram) {
+                          e.currentTarget.style.background = "linear-gradient(45deg, rgba(245, 133, 41, 0.1), rgba(221, 42, 123, 0.1), rgba(129, 52, 175, 0.1))";
+                        } else {
+                          e.currentTarget.style.backgroundColor = `${social.color}0D`;
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "";
+                        e.currentTarget.style.borderColor = "";
+                        e.currentTarget.style.boxShadow = "";
+                        e.currentTarget.style.background = "";
+                        e.currentTarget.style.backgroundColor = "";
+                      }}
+                      title={social.name}
+                    >
+                      <IconComponent className={`w-4 h-4 transition-all duration-300 group-hover:scale-110 ${
+                        isInstagram ? "group-hover:stroke-[url(#insta-grad-footer)]" : ""
+                      }`} />
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+
+          </div>
+
+          {/* Divider line */}
+          <div className="w-full h-[1px] bg-white/5 mb-6" />
+
+          {/* Bottom Section */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-[10px] text-gray-500">
+            
+            {/* Brand Signature */}
+            <div className="flex items-center gap-2 select-none group/sig cursor-default">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FFD700] shadow-[0_0_4px_#FFD700] group-hover/sig:scale-125 transition-transform duration-300" />
+              <span className="group-hover/sig:text-[#FFD700] transition-colors duration-300">DEVELOPED BY AARYAN NIGHUT // 2026</span>
+            </div>
+
+            {/* Scroll to top button */}
             <button
               onClick={() => scrollToSection("hero")}
-              className="text-lg sm:text-xl font-black italic tracking-wider text-white uppercase hover:text-[#FFD700] hover:scale-102 transition-all duration-300 cursor-pointer select-none"
+              className="group hover:text-[#FFD700] hover:border-[#FFD700]/30 hover:bg-[#FFD700]/5 hover:shadow-[0_0_12px_rgba(255,215,0,0.15)] transition-all duration-300 uppercase tracking-widest cursor-pointer flex items-center gap-1.5 border border-white/5 px-3 py-1.5 rounded-full bg-white/[0.01]"
             >
-              Aaryan Nighut
+              <span>Back to top</span>
+              <ArrowUp className="w-3 h-3 group-hover:-translate-y-0.5 transition-transform duration-300 text-[#FFD700]" />
             </button>
-            <p className="text-gray-400 text-xs font-light max-w-sm leading-relaxed">
-              AI & Full-Stack Developer driven by innovation and excellence. Transforming complex ideas into intelligent and cinematic digital experiences.
-            </p>
-          </div>
 
-          {/* Navigation Links Column */}
-          <div className="col-span-1 md:col-span-3 text-left space-y-4">
-            <h4 className="font-mono text-[10px] text-gray-500 font-bold uppercase tracking-widest">
-              Navigation
-            </h4>
-            <ul className="space-y-2.5 font-sans text-xs text-gray-400">
-              {[
-                { id: "hero", label: "Home", icon: Home },
-                { id: "about", label: "About Me", icon: User },
-                { id: "services", label: "Services", icon: Briefcase },
-                { id: "projects", label: "Projects", icon: FolderCode },
-                { id: "achievements", label: "Achievements", icon: Trophy },
-                { id: "contact", label: "Contact", icon: LucideMail }
-              ].map((item) => (
-                <li key={item.id}>
-                  <button
-                    onClick={() => scrollToSection(item.id)}
-                    className="flex items-center gap-2 hover:text-[#FFD700] hover:translate-x-1.5 transition-all duration-300 cursor-pointer text-left group"
-                  >
-                    <item.icon className="w-3.5 h-3.5 text-gray-500 group-hover:text-[#FFD700] transition-colors duration-300" />
-                    <span>{item.label}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Socials Connection Column */}
-          <div className="col-span-1 md:col-span-3 text-left space-y-4">
-            <h4 className="font-mono text-[10px] text-gray-500 font-bold uppercase tracking-widest">
-              Social Nodes
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {socialsData.map((social) => {
-                const IconComponent = getSocialIcon(social.iconName);
-                const isInstagram = social.name === "Instagram";
-                return (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-lg border border-white/5 bg-white/[0.02] flex items-center justify-center text-gray-400 transition-all duration-300 hover:-translate-y-1 group"
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = isInstagram ? "#DD2A7B" : social.color;
-                      e.currentTarget.style.borderColor = isInstagram ? "rgba(221, 42, 123, 0.4)" : `${social.color}40`;
-                      e.currentTarget.style.boxShadow = isInstagram 
-                        ? "0 4px 12px rgba(221, 42, 123, 0.35)" 
-                        : `0 4px 12px ${social.color}40`;
-                      if (isInstagram) {
-                        e.currentTarget.style.background = "linear-gradient(45deg, rgba(245, 133, 41, 0.1), rgba(221, 42, 123, 0.1), rgba(129, 52, 175, 0.1))";
-                      } else {
-                        e.currentTarget.style.backgroundColor = `${social.color}0D`;
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.color = "";
-                      e.currentTarget.style.borderColor = "";
-                      e.currentTarget.style.boxShadow = "";
-                      e.currentTarget.style.background = "";
-                      e.currentTarget.style.backgroundColor = "";
-                    }}
-                    title={social.name}
-                  >
-                    <IconComponent className={`w-4 h-4 transition-all duration-300 group-hover:scale-110 ${
-                      isInstagram ? "group-hover:stroke-[url(#insta-grad-footer)]" : ""
-                    }`} />
-                  </a>
-                );
-              })}
+            {/* Simulated HUD specs */}
+            <div className="flex gap-4 select-none">
+              <span className="opacity-45 flex items-center gap-1">
+                <Cpu className="w-3 h-3 animate-pulse text-[#FFD700]" />
+                <span>PING: 12ms</span>
+              </span>
+              <span className="opacity-45">STATUS: ONLINE</span>
             </div>
-          </div>
 
+          </div>
         </div>
 
-        {/* Divider line */}
-        <div className="w-full h-[1px] bg-white/5 mb-6" />
-
-        {/* Bottom Section */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-[10px] text-gray-500">
-          
+        {/* Mobile Footer (visible on mobile, hidden on md+) */}
+        <div className="block md:hidden text-center flex flex-col items-center justify-center pt-6 pb-2">
           {/* Brand Signature */}
-          <div className="flex items-center gap-2 select-none group/sig cursor-default">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FFD700] shadow-[0_0_4px_#FFD700] group-hover/sig:scale-125 transition-transform duration-300" />
-            <span className="group-hover/sig:text-[#FFD700] transition-colors duration-300">DEVELOPED BY AARYAN NIGHUT // 2026</span>
-          </div>
-
-          {/* Scroll to top button */}
           <button
             onClick={() => scrollToSection("hero")}
-            className="group hover:text-[#FFD700] hover:border-[#FFD700]/30 hover:bg-[#FFD700]/5 hover:shadow-[0_0_12px_rgba(255,215,0,0.15)] transition-all duration-300 uppercase tracking-widest cursor-pointer flex items-center gap-1.5 border border-white/5 px-3 py-1.5 rounded-full bg-white/[0.01]"
+            className="text-base font-black italic tracking-wider text-white uppercase hover:text-[#FFD700] hover:scale-102 transition-all duration-300 cursor-pointer select-none"
           >
-            <span>Back to top</span>
-            <ArrowUp className="w-3 h-3 group-hover:-translate-y-0.5 transition-transform duration-300 text-[#FFD700]" />
+            Aaryan Nighut
           </button>
+          
+          {/* Subtitle / Role */}
+          <p className="font-mono text-[9px] text-[#FFD700]/90 font-bold uppercase tracking-widest mt-2">
+            AI &amp; FULL-STACK DEVELOPER
+          </p>
 
-          {/* Simulated HUD specs */}
-          <div className="flex gap-4 select-none">
-            <span className="opacity-45 flex items-center gap-1">
-              <Cpu className="w-3 h-3 animate-pulse text-[#FFD700]" />
-              <span>PING: 12ms</span>
-            </span>
-            <span className="opacity-45">STATUS: ONLINE</span>
+          {/* Social Icons */}
+          <div className="flex justify-center items-center gap-3.5 mt-6">
+            {socialsData.map((social) => {
+              const IconComponent = getSocialIcon(social.iconName);
+              const isInstagram = social.name === "Instagram";
+              return (
+                <a
+                  key={social.name + "-mobile"}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7.5 h-7.5 rounded-lg border border-white/5 bg-white/[0.02] flex items-center justify-center text-gray-400 transition-all duration-300 hover:-translate-y-0.5 group"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = isInstagram ? "#DD2A7B" : social.color;
+                    e.currentTarget.style.borderColor = isInstagram ? "rgba(221, 42, 123, 0.4)" : `${social.color}40`;
+                    e.currentTarget.style.boxShadow = isInstagram 
+                      ? "0 4px 12px rgba(221, 42, 123, 0.35)" 
+                      : `0 4px 12px ${social.color}40`;
+                    if (isInstagram) {
+                      e.currentTarget.style.background = "linear-gradient(45deg, rgba(245, 133, 41, 0.1), rgba(221, 42, 123, 0.1), rgba(129, 52, 175, 0.1))";
+                    } else {
+                      e.currentTarget.style.backgroundColor = `${social.color}0D`;
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "";
+                    e.currentTarget.style.borderColor = "";
+                    e.currentTarget.style.boxShadow = "";
+                    e.currentTarget.style.background = "";
+                    e.currentTarget.style.backgroundColor = "";
+                  }}
+                  title={social.name}
+                >
+                  <IconComponent className={`w-3.5 h-3.5 transition-all duration-300 group-hover:scale-110 ${
+                    isInstagram ? "group-hover:stroke-[url(#insta-grad-footer)]" : ""
+                  }`} />
+                </a>
+              );
+            })}
           </div>
 
+          {/* Divider line for mobile */}
+          <div className="w-12 h-[1px] bg-white/5 mt-8 mb-6" />
+
+          {/* Copyright Info */}
+          <div className="font-mono text-[9px] text-gray-500 leading-relaxed tracking-wider">
+            <div>© 2026 Aaryan Nighut</div>
+            <div className="mt-0.5 opacity-60">All Rights Reserved.</div>
+          </div>
         </div>
 
       </div>
