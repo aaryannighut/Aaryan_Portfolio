@@ -165,7 +165,7 @@ export default function Contact() {
       const data = await response.json();
 
       if (response.ok && (data.success === "true" || data.success === true)) {
-        setTerminalMsg("PAYLOAD TRANSMITTED. RESPONSE RECEIVED: 202 ACCEPTED.");
+        setTerminalMsg("Successfully sent the message to Aaryan Nighut");
         setStatus("success");
         setFormState({ name: "", email: "", message: "" });
         setTimeout(() => {
@@ -224,7 +224,7 @@ export default function Contact() {
           <div className="w-16 h-[2px] bg-[#FFD700] mx-auto mt-4 rounded" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
           
           {/* Left Column: Direct Info & Social Grid */}
           <motion.div
@@ -232,7 +232,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-5 space-y-10 text-left"
+            className="md:col-span-5 space-y-10 text-left"
           >
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-white uppercase tracking-wider">
@@ -336,7 +336,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-7"
+            className="md:col-span-7"
           >
             <div className="glass-card p-6 sm:p-8 rounded-2xl border border-[rgba(255,215,0,0.12)] bg-[#0D0D0D] shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#FFD700]/35 hover:shadow-[0_25px_50px_rgba(255,215,0,0.08)]">
               

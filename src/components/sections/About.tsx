@@ -99,9 +99,9 @@ export default function About() {
         </div>
 
         {/* Split Grid Layout (Portrait on left, Coding Panel & Bio on right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center w-full mb-12">
           {/* Left Column: Portrait */}
-          <div className="lg:col-span-4 flex flex-col w-full max-w-sm mx-auto lg:max-w-none">
+          <div className="md:col-span-4 flex flex-col w-full max-w-sm mx-auto md:max-w-none">
             {/* Portrait Frame */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -173,7 +173,7 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="lg:col-span-8 flex flex-col gap-6 w-full text-left"
+            className="md:col-span-8 flex flex-col gap-6 w-full text-left"
           >
             {/* Coding Panel Card (Code Execution Style) */}
             <div className="group glass-card w-full rounded-2xl border-[rgba(255,215,0,0.12)] bg-[#0D0D0D] overflow-hidden text-left shadow-[0_15px_45px_rgba(0,0,0,0.5)] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-[#FFD700]/35 hover:shadow-[0_25px_55px_rgba(255,215,0,0.12)]">
