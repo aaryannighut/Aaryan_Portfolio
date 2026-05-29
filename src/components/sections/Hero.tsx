@@ -257,7 +257,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.8 }}
-            className="group glass-card w-full max-w-[310px] md:max-w-none py-1.5 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl border border-white/5 hover:border-white/15 bg-[#0C0C0C]/85 hover:bg-[#0E0E0E]/90 shadow-[0_15px_35px_rgba(0,0,0,0.5)] flex items-center justify-between text-left gap-1 md:gap-4 transition-all duration-300 cursor-pointer"
+            className="group glass-card w-full max-w-[310px] md:max-w-none py-1.5 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl border border-white/5 hover:border-white/15 active:border-white/15 bg-[#0C0C0C]/85 hover:bg-[#0E0E0E]/90 active:bg-[#0E0E0E]/90 shadow-[0_15px_35px_rgba(0,0,0,0.5)] flex items-center justify-between text-left gap-1 md:gap-4 transition-all duration-300 cursor-pointer"
           >
             {/* Metric 1 */}
             <div className="flex-1 flex flex-col gap-0.5 items-start pl-0.5 md:pl-2">
@@ -265,7 +265,7 @@ export default function Hero() {
                 <span className="text-[10px] md:text-base">🏆</span>
                 <span className="text-[10px] md:text-base font-bold text-white font-mono leading-none">1+</span>
               </div>
-              <span className="text-[8px] md:text-[10px] text-gray-300 md:text-gray-500 group-hover:text-white transition-colors duration-300 font-mono uppercase tracking-[0.05em] leading-none" style={{ wordSpacing: "0.06em" }}>
+              <span className="text-[8px] md:text-[10px] text-gray-300 md:text-gray-500 group-hover:text-white group-active:text-white transition-colors duration-300 font-mono uppercase tracking-[0.05em] leading-none" style={{ wordSpacing: "0.06em" }}>
                 Hackathon Win
               </span>
             </div>
@@ -277,7 +277,7 @@ export default function Hero() {
                 <span className="text-[10px] md:text-base">📁</span>
                 <span className="text-[10px] md:text-base font-bold text-white font-mono leading-none">5+</span>
               </div>
-              <span className="text-[8px] md:text-[10px] text-gray-300 md:text-gray-500 group-hover:text-white transition-colors duration-300 font-mono uppercase tracking-[0.05em] leading-none" style={{ wordSpacing: "0.06em" }}>
+              <span className="text-[8px] md:text-[10px] text-gray-300 md:text-gray-500 group-hover:text-white group-active:text-white transition-colors duration-300 font-mono uppercase tracking-[0.05em] leading-none" style={{ wordSpacing: "0.06em" }}>
                 Projects
               </span>
             </div>
@@ -289,7 +289,7 @@ export default function Hero() {
                 <span className="text-[10px] md:text-base">📜</span>
                 <span className="text-[10px] md:text-base font-bold text-white font-mono leading-none">10+</span>
               </div>
-              <span className="text-[8px] md:text-[10px] text-gray-300 md:text-gray-500 group-hover:text-white transition-colors duration-300 font-mono uppercase tracking-[0.05em] leading-none" style={{ wordSpacing: "0.06em" }}>
+              <span className="text-[8px] md:text-[10px] text-gray-300 md:text-gray-500 group-hover:text-white group-active:text-white transition-colors duration-300 font-mono uppercase tracking-[0.05em] leading-none" style={{ wordSpacing: "0.06em" }}>
                 Certificates
               </span>
             </div>
@@ -301,7 +301,7 @@ export default function Hero() {
                 <span className="text-[10px] md:text-base">🧠</span>
                 <span className="text-[10px] md:text-base font-bold text-white font-mono leading-none">AI/ML</span>
               </div>
-              <span className="text-[8px] md:text-[10px] text-gray-300 md:text-gray-500 group-hover:text-white transition-colors duration-300 font-mono uppercase tracking-[0.05em] leading-none" style={{ wordSpacing: "0.06em" }}>
+              <span className="text-[8px] md:text-[10px] text-gray-300 md:text-gray-500 group-hover:text-white group-active:text-white transition-colors duration-300 font-mono uppercase tracking-[0.05em] leading-none" style={{ wordSpacing: "0.06em" }}>
                 <span className="hidden md:inline">AIML </span>Enthusiast
               </span>
             </div>
@@ -315,7 +315,7 @@ export default function Hero() {
             className="flex items-center gap-2 mt-1 sm:mt-2 pl-1 select-none group cursor-pointer"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
-            <span className="font-mono text-[8.5px] md:text-[11px] uppercase tracking-[0.18em] md:tracking-[0.34em] text-gray-400 group-hover:text-white transition-colors duration-300 font-bold [word-spacing:0.12em] md:[word-spacing:0.28em]">
+            <span className="font-mono text-[8.5px] md:text-[11px] uppercase tracking-[0.18em] md:tracking-[0.34em] text-gray-400 group-hover:text-white group-active:text-white transition-colors duration-300 font-bold [word-spacing:0.12em] md:[word-spacing:0.28em]">
               AVAILABLE FOR OPPORTUNITIES
             </span>
           </motion.div>
