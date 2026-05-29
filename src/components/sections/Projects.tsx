@@ -124,24 +124,36 @@ function ProjectCard({
   project, 
   index, 
   isDesktop, 
-  onHoverChange 
+  activeMobileIndex,
+  onHoverChange,
+  onClickMobile
 }: { 
   project: typeof projectsData[0]; 
   index: number; 
   isDesktop: boolean; 
+  activeMobileIndex: number;
   onHoverChange?: (idx: number) => void;
+  onClickMobile?: (idx: number) => void;
 }) {
   const [activeImgIndex, setActiveImgIndex] = React.useState(0);
   const images = project.screenshots && project.screenshots.length > 0 ? project.screenshots : [project.image];
   const cardStyle = projectStyles[project.id] || defaultStyle;
+  const isActiveMobile = !isDesktop && activeMobileIndex === index;
+
+  const borderClass = isActiveMobile ? cardStyle.border.replace(/hover:/g, "") : cardStyle.border;
+  const shadowClass = isActiveMobile ? cardStyle.shadow.replace(/hover:/g, "") : cardStyle.shadow;
+  const imageBorderClass = isActiveMobile ? cardStyle.imageBorder.replace(/group-hover:/g, "") : cardStyle.imageBorder;
+  const imageGlowClass = isActiveMobile ? cardStyle.imageGlow.replace(/group-hover:/g, "") : cardStyle.imageGlow;
+  const outerNeonClass = isActiveMobile ? cardStyle.outerNeon.replace(/group-hover:/g, "") : cardStyle.outerNeon;
 
   return (
     <div
       onMouseEnter={() => isDesktop && onHoverChange?.(index)}
+      onClick={() => !isDesktop && onClickMobile?.(index)}
       className={`${
         isDesktop 
           ? "w-[31vw] max-w-[460px] flex-shrink-0 h-[530px] cursor-pointer" 
-          : "w-[85vw] sm:w-[70vw] md:w-[55vw] max-w-[450px] flex-shrink-0 snap-center h-[470px] sm:h-[500px]"
+          : "w-[85vw] sm:w-[70vw] md:w-[55vw] max-w-[450px] flex-shrink-0 snap-center h-[470px] sm:h-[500px] cursor-pointer"
       }`}
     >
       <motion.div
@@ -149,13 +161,19 @@ function ProjectCard({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, delay: isDesktop ? 0 : index * 0.1 }}
-        className={`group relative bg-[#0D0D0D] border border-white/10 rounded-[24px] p-5 lg:p-6 overflow-hidden flex flex-col gap-3 lg:gap-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:-translate-y-1.5 h-full w-full ${cardStyle.border} ${cardStyle.shadow}`}
+        className={`group relative bg-[#0D0D0D] border border-white/10 rounded-[24px] p-5 lg:p-6 overflow-hidden flex flex-col gap-3 lg:gap-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 h-full w-full ${
+          isDesktop ? "hover:-translate-y-1.5" : ""
+        } ${
+          isActiveMobile ? "-translate-y-1.5" : ""
+        } ${borderClass} ${shadowClass}`}
       >
         {/* Card Header (Mockup Style) */}
         <div className="flex items-center justify-between border-b border-white/5 pb-4 shrink-0">
           <div className="flex items-center gap-4 text-left select-none">
             {/* Huge clean number */}
-            <span className="text-5xl sm:text-6xl font-black font-sans tracking-tighter text-white/90 leading-none">
+            <span className={`text-5xl sm:text-6xl font-black font-sans tracking-tighter leading-none transition-colors duration-300 ${
+              isActiveMobile ? cardStyle.text : "text-white/90 group-hover:text-white"
+            }`}>
               {String(index + 1).padStart(2, "0")}
             </span>
             
@@ -177,7 +195,10 @@ function ProjectCard({
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`px-4 py-1.5 rounded-full border border-white/20 text-[10px] font-mono font-bold uppercase tracking-wider text-white bg-white/5 transition-all duration-300 flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.02)] whitespace-nowrap ${cardStyle.btnGlow}`}
+                onClick={(e) => e.stopPropagation()} // Prevent card activation on button click
+                className={`px-4 py-1.5 rounded-full border border-white/20 text-[10px] font-mono font-bold uppercase tracking-wider text-white bg-white/5 transition-all duration-300 flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.02)] whitespace-nowrap ${
+                  isActiveMobile ? cardStyle.btnGlow.replace(/hover:/g, "") : cardStyle.btnGlow
+                }`}
               >
                 <span>GitHub</span>
                 <ExternalLink className={`w-3.5 h-3.5 transition-colors duration-300 ${cardStyle.iconText}`} />
@@ -188,7 +209,10 @@ function ProjectCard({
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`px-4 py-1.5 rounded-full border border-white/20 text-[10px] font-mono font-bold uppercase tracking-wider text-white bg-white/5 transition-all duration-300 flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.02)] whitespace-nowrap ${cardStyle.btnGlow}`}
+                onClick={(e) => e.stopPropagation()} // Prevent card activation on button click
+                className={`px-4 py-1.5 rounded-full border border-white/20 text-[10px] font-mono font-bold uppercase tracking-wider text-white bg-white/5 transition-all duration-300 flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.02)] whitespace-nowrap ${
+                  isActiveMobile ? cardStyle.btnGlow.replace(/hover:/g, "") : cardStyle.btnGlow
+                }`}
               >
                 <span>Live Demo</span>
                 <ExternalLink className={`w-3.5 h-3.5 transition-colors duration-300 ${cardStyle.iconText}`} />
@@ -198,12 +222,16 @@ function ProjectCard({
         </div>
 
         {/* Project Image Frame (mock screen preview) */}
-        <div className={`group/image relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-black/80 border border-white/5 transition-all duration-500 shrink-0 ${cardStyle.imageBorder} ${cardStyle.imageGlow}`}>
+        <div className={`group/image relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-black/80 border border-white/5 transition-all duration-500 shrink-0 ${imageBorderClass} ${imageGlowClass}`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={images[activeImgIndex]}
             alt={project.title}
-            className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 group-hover:scale-105 contrast-110 transition-all duration-500"
+            className={`w-full h-full object-contain filter contrast-110 transition-all duration-500 ${
+              isActiveMobile 
+                ? "grayscale-0 scale-105" 
+                : "grayscale group-hover:grayscale-0 group-hover:scale-105"
+            }`}
           />
           
           {/* Gradient overlays */}
@@ -218,7 +246,9 @@ function ProjectCard({
                   e.stopPropagation();
                   setActiveImgIndex((prev) => (prev - 1 + images.length) % images.length);
                 }}
-                className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black/95 text-white border border-white/10 transition-all flex items-center justify-center z-30 cursor-pointer hover:scale-105 ${cardStyle.arrowHover}`}
+                className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 text-white border border-white/10 transition-all flex items-center justify-center z-30 cursor-pointer hover:scale-105 ${
+                  isActiveMobile ? cardStyle.arrowHover.replace(/hover:/g, "") : cardStyle.arrowHover
+                }`}
                 title="Previous image"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -229,7 +259,9 @@ function ProjectCard({
                   e.stopPropagation();
                   setActiveImgIndex((prev) => (prev + 1) % images.length);
                 }}
-                className={`absolute right-3 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black/95 text-white border border-white/10 transition-all flex items-center justify-center z-30 cursor-pointer hover:scale-105 ${cardStyle.arrowHover}`}
+                className={`absolute right-3 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 text-white border border-white/10 transition-all flex items-center justify-center z-30 cursor-pointer hover:scale-105 ${
+                  isActiveMobile ? cardStyle.arrowHover.replace(/hover:/g, "") : cardStyle.arrowHover
+                }`}
                 title="Next image"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -270,7 +302,9 @@ function ProjectCard({
             {project.tech.map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/5 text-[10px] sm:text-xs font-mono text-gray-500 group-hover:text-gray-300 transition-all duration-300"
+                className={`px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/5 text-[10px] sm:text-xs font-mono text-gray-500 transition-all duration-300 ${
+                  isActiveMobile ? "text-gray-300" : "group-hover:text-gray-300"
+                }`}
               >
                 {tag}
               </span>
@@ -279,7 +313,7 @@ function ProjectCard({
         </div>
 
         {/* Subtle outer neon border trigger */}
-        <div className={`absolute inset-0 rounded-[24px] border border-transparent pointer-events-none transition-colors duration-500 ${cardStyle.outerNeon}`} />
+        <div className={`absolute inset-0 rounded-[24px] border border-transparent pointer-events-none transition-colors duration-500 ${outerNeonClass}`} />
       </motion.div>
     </div>
   );
@@ -290,6 +324,7 @@ export default function Projects() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(0);
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
 
   useEffect(() => {
     const checkBreakpoint = () => {
@@ -342,6 +377,53 @@ export default function Projects() {
     });
   }, [hoveredIndex, isDesktop]);
 
+  // Dynamically update active index as user scrolls horizontally on mobile
+  const handleMobileScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (isDesktop) return;
+    const scrollContainer = e.currentTarget;
+    const scrollLeft = scrollContainer.scrollLeft;
+    const containerWidth = scrollContainer.offsetWidth;
+    const children = Array.from(scrollContainer.children);
+    if (children.length === 0) return;
+
+    let minDistance = Infinity;
+    let closestIndex = 0;
+    const containerCenter = scrollLeft + containerWidth / 2;
+
+    children.forEach((child, idx) => {
+      const el = child as HTMLElement;
+      const childCenter = el.offsetLeft + el.offsetWidth / 2;
+      const distance = Math.abs(containerCenter - childCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = idx;
+      }
+    });
+
+    setActiveMobileIndex(closestIndex);
+  };
+
+  // Scroll clicked card to the center of the viewport on mobile
+  const handleMobileCardClick = (index: number) => {
+    setActiveMobileIndex(index);
+    const scrollContainer = scrollSectionRef.current;
+    if (!scrollContainer) return;
+    const children = Array.from(scrollContainer.children);
+    const targetCard = children[index] as HTMLElement;
+    if (!targetCard) return;
+
+    const containerWidth = scrollContainer.offsetWidth;
+    const cardWidth = targetCard.offsetWidth;
+    const cardOffsetLeft = targetCard.offsetLeft;
+
+    const targetScrollLeft = cardOffsetLeft - (containerWidth / 2) + (cardWidth / 2);
+
+    scrollContainer.scrollTo({
+      left: targetScrollLeft,
+      behavior: "smooth"
+    });
+  };
+
   return (
     <div id="projects" ref={containerRef} className="bg-[#0A0A0A] w-full overflow-hidden py-12 lg:py-16 relative">
       {/* Floating 3D Shapes */}
@@ -373,6 +455,7 @@ export default function Projects() {
         {/* Horizontal scroll track (For Desktop and Mobile) */}
         <div
           ref={scrollSectionRef}
+          onScroll={handleMobileScroll}
           className={`${
             isDesktop
               ? "flex gap-8 pl-[24vw] pr-[24vw] select-none items-center relative z-10 w-full py-4"
@@ -385,7 +468,9 @@ export default function Projects() {
               project={project}
               index={index}
               isDesktop={isDesktop}
+              activeMobileIndex={activeMobileIndex}
               onHoverChange={setHoveredIndex}
+              onClickMobile={handleMobileCardClick}
             />
           ))}
         </div>
