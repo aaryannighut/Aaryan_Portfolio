@@ -120,7 +120,7 @@ export default function TerminalIntro({ onComplete }: TerminalIntroProps) {
             <span>MATCH: <span className="text-[#FFD700]">99.85%</span></span>
           </div>
           <div className="flex justify-between px-4 text-[10px]">
-            <span>LOC: <span className="text-white">18.5204° N, 73.8567° E</span></span>
+            <span>LOC: <span className="text-white">19.1970° N, 72.9635° E</span></span>
             <span>ROLE: <span className="text-white">DEVELOPER</span></span>
           </div>
         </div>
