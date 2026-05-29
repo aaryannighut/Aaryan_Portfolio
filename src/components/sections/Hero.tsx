@@ -95,7 +95,7 @@ export default function Hero() {
     <section
       ref={containerRef}
       id="hero"
-      className="relative h-screen h-[100dvh] min-h-[600px] sm:min-h-[650px] md:min-h-[720px] flex items-center justify-start bg-[#0A0A0A] overflow-hidden py-4 sm:py-8 md:py-0"
+      className="relative h-screen h-[100dvh] min-h-[600px] sm:min-h-[650px] md:min-h-[720px] md:portrait:h-auto md:portrait:py-20 flex items-center justify-start bg-[#0A0A0A] overflow-hidden py-4 sm:py-8 md:py-0"
     >
       {/* Background office landscape image with blending overlays */}
       <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aaryan Nighut | portfolio",
+  title: "Aaryan Nighut | Portfolio",
   description: "Explore the futuristic, premium developer portfolio of Aaryan Nighut. Designer, Developer, AI Enthusiast, and Problem Solver crafting immersive digital experiences.",
   keywords: ["Aaryan Nighut", "Developer Portfolio", "Next.js Portfolio", "Framer Motion Portfolio", "Cinematic Web Design", "AI Integration", "Full Stack Developer Pune"],
   authors: [{ name: "Aaryan Nighut" }],
