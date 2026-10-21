@@ -16,7 +16,7 @@ export const profileData: Profile = {
   titles: ["Developer", "Designer", "AI Enthusiast", "Problem Solver"],
   tagline: "Crafting immersive digital experiences by combining elegant design with robust engineering and cutting-edge artificial intelligence.",
   avatarUrl: "/about-profile.jpg",
-  resumeUrl: "https://drive.google.com/file/d/1My6Mao9D4xcX8LFjDxcO4IP_F3sgLWnL/view?usp=drive_link",
+  resumeUrl: "https://drive.google.com/file/d/1vQQYGaT0eeBPbd14tu5yPSc9KYUKp3tu/view?usp=sharing",
   location: "Thane, Maharashtra",
   email: "aaryannighut07@gmail.com",
   phone: "+91 99999 99999", // Replace with real phone or placeholder
